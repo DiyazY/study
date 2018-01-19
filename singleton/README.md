@@ -1,0 +1,2 @@
+# singleton
+singleton (сreational patterns)
