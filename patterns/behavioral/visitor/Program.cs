@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using visitor.models;
 
 namespace visitor
 {
@@ -6,7 +8,16 @@ namespace visitor
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var exportVisitors = new XMLExportVisitor();
+
+            List<IShape> shapes = new List<IShape>(){
+                new Rectangle(2,5),
+                new Circle(),
+                new Dot()
+            };
+            foreach(var shape in shapes){
+                shape.Accept(exportVisitors);
+            }
         }
     }
 }
