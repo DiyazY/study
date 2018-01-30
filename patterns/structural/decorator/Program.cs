@@ -1,4 +1,5 @@
 ﻿using System;
+using decorator.models;
 
 namespace decorator
 {
@@ -6,7 +7,26 @@ namespace decorator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            #region  Encryption > Compression > FileDataSource
+                IDataSource source = new FileDataSource("somefile.dat");
+                source.WriteData("Mike Johnes");
+                System.Console.WriteLine($"read: {source.ReadData()}");
+
+                
+
+                source = new EncyptionDecorator(source);
+                source.WriteData("This a Key");
+                System.Console.WriteLine($"read: {source.ReadData()}");
+
+                source = new CompressionDecorator(source);
+                source.WriteData("It's freeeeeeeeeeeeezing!!!");
+                System.Console.WriteLine($"read: {source.ReadData()}");
+                source.Clear();
+
+                source.WriteData("qqqqwwweasssssssdxsddffffs");
+                System.Console.WriteLine($"read: {source.ReadData()}");
+            #endregion
+            
         }
     }
 }
